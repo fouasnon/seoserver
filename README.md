@@ -37,5 +37,18 @@
     RewriteRule (.*) http://address-of-seoserver:3000/%1? [P]
 
   </code>
+
+  <h3>Using with Heroku</h3>
+  <p>   Get the <a href="https://github.com/lbesson/heroku-buildpack-phantomjs-nodejs">Phantom-Node.js Buildpack</a>. </p>
+  After following those instructions.  Run
+  <code> heroku apps:create seoserver </code>
+  <code> git remote add heroku git@heroku.com:seoserver.git </code>
+  <code>heroku config:set BUILDPACK_URL=http://github.com/fouasnon/heroku-buildpack-phantomjs-nodejs.git --app seoserver</code>
+  <code>heroku config:set CLIENT_HOST=example.com --app seoserver</code>
+  <code>heroku config:set LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/lib:/app/vendor/phantomjs/lib --app seoserver</code>
+  <code>heroku config:set NODE_ENV=production --app seoserver</code>
+  <code>heroku config:set PATH=bin:node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/app/vendor/phantomjs/bin --app seoserver</code>
+  <code> git push heroku master:master </code>
+
   <h3>FAQ</h3>
   <p>Nothing here yet, but check out the examples on the left to see different types of ajaxed content. Also ask questions and give feedback on GitHub <a href="https://github.com/apiengine/seoserver/issues">issues</a>.
